@@ -5,5 +5,5 @@ This addons renders admins without the ulx edit ban permssions unable to re-ban 
 Permission Node:
 
 ```
-ulx_editban
+ulx modifybans
 ```
