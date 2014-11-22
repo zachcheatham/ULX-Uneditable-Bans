@@ -10,8 +10,12 @@ local function isBanEditable(steamID)
 end
 
 local function banid(calling_ply, steamid, minutes, reason)
-	if not calling_ply:query("ulx modifybans") and not isBanEditable(steamid) then
+	if IsValid(calling_ply) and not calling_ply:query("ulx modifybans") and not isBanEditable(steamid) then
 		ULib.tsayError(calling_ply, "That player is already banned!", true)
+		
+		if minutes < 60 then
+			ULib.tsayError(_, calling_ply:SteamID() .. " attempted to unban someone by banning them for a minute. This is abuse.", true)
+		end
 	else
 		ulx.banid(calling_ply, steamid, minutes, reason)
 	end
